@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstddef>
 #include <unordered_set>
+#include <deque>
 
 
 LinkedList::LinkedList(int value) {
@@ -22,6 +23,11 @@ LinkedList::LinkedList(int* values, int n) {
 }
 
 void LinkedList::add_node(int value) {
+    Node* new_head = new Node(value, this->head);
+    this->head = new_head;
+}
+
+void LinkedList::add_end_node(int value) {
     Node* last = new Node(value);
     Node* current = this->head;
     while(current->next != NULL) {
@@ -81,4 +87,19 @@ void LinkedList::remove_duplicates() {
         encountered.insert(current->value);
         current = current->next;
     }
+}
+
+Node* LinkedList::k_from_back(int k) {
+    std::deque<Node*> last_k;
+    Node* current = this->head;
+    while (current) {
+        last_k.push_back(current);
+        if(last_k.size() > k)
+            last_k.pop_front();
+        current = current->next;
+    }
+    if (last_k.size() < k)
+        return NULL;
+    else
+        return last_k.front();
 }

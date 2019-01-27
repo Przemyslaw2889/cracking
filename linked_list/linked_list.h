@@ -13,7 +13,9 @@ class LinkedList {
     void remove_node(int value);
     void remove_duplicates();
     void add_node(int value);
+    void add_end_node(int value);
     Node* find_node(int value);
+    Node* k_from_back(int k);
     void print();
 };
 

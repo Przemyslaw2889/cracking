@@ -10,8 +10,12 @@ int main() {
     std::cout << "List after creation:" << std::endl;
     list.print();
 
-    list.add_node(777);
-    std::cout << "List after after adding 777:" << std::endl;
+    list.add_end_node(777);
+    std::cout << "List after after adding 777 at the end:" << std::endl;
+    list.print();
+
+    list.add_node(888);
+    std::cout << "List after after adding 888:" << std::endl;
     list.print();
 
     list.remove_node(5);
@@ -25,5 +29,9 @@ int main() {
     list.remove_duplicates();
     std::cout << "List after removing duplicates:" << std::endl;
     list.print();
+
+    Node* k_last = list.k_from_back(4);
+    std::cout << "4 last element:" << std::endl;
+    std::cout << k_last->value << std::endl << std::endl;
 
 }
