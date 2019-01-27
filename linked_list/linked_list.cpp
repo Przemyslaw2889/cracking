@@ -2,6 +2,7 @@
 #include "node.h"
 #include <iostream>
 #include <cstddef>
+#include <unordered_set>
 
 
 LinkedList::LinkedList(int value) {
@@ -64,5 +65,20 @@ void LinkedList::print() {
         std::cout << current->value << " ";
         current = current->next;
     }
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
+}
+
+void LinkedList::remove_duplicates() {
+    std::unordered_set<int> encountered;
+    Node* current = this->head;
+    Node* previous;
+
+    while(current) {
+        if (encountered.find(current->value) != encountered.end())
+            previous->next = current->next;
+        else
+            previous = current;
+        encountered.insert(current->value);
+        current = current->next;
+    }
 }
